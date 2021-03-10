@@ -1,0 +1,22 @@
+@import "../../styles/all.css";
+
+.root {
+  display: flex;
+  flex-direction: row;
+
+  *:not(:last-child) {
+    margin: 0 8px 0 0;
+  }
+
+  padding-bottom: 20px;
+
+  border-bottom: 1px solid $baby-blue;
+
+  @include Breakpoint-tabletAndBelow {
+    flex-direction: column;
+
+    *:not(:last-child) {
+      margin: 0 0 8px 0;
+    }
+  }
+}
