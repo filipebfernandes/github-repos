@@ -1,0 +1,22 @@
+@import "../../styles/all.css";
+
+.root {
+  padding: $spacing-8 $spacing-32;
+
+  background-color: $klein-blue;
+
+  border-radius: calc($spacing-8 / 2);
+
+  cursor: pointer;
+  outline: none;
+
+  text-decoration: none;
+}
+
+.disabled {
+  background-color: $oxford-blue;
+
+  cursor: default;
+
+  opacity: 0.6;
+}

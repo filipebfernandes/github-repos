@@ -1,0 +1,37 @@
+@import "../../styles/all.css";
+
+.input {
+  width: 250px;
+  padding: 8px;
+
+  background-color: $white;
+
+  border: 1px solid $baby-blue;
+  border-radius: 5px;
+  box-shadow: 0px 0px 60px rgba(75, 28, 165, 0.03);
+
+  color: $klein-blue;
+
+  font-family: $font-family;
+  font-size: $font-size-body;
+
+  line-height: $line-height-body;
+
+  @include Breakpoint-tabletAndBelow {
+    width: 95%;
+    padding: 8px;
+  }
+}
+
+input::placeholder {
+  color: $baby-blue;
+
+  font-family: $font-family;
+  font-size: $font-size-body;
+
+  line-height: $line-height-body;
+}
+
+.input:focus-within {
+  border: 1px solid $baby-blue;
+}

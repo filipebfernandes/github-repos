@@ -1,0 +1,21 @@
+@import "../../styles/all.css";
+
+.root {
+  margin-bottom: 1.45rem;
+
+  h1 {
+    margin: 0;
+  }
+}
+
+.inner {
+  max-width: 960px;
+  padding: 1.45rem;
+  margin: 0 auto;
+}
+
+.link {
+  color: $klein-blue !important;
+
+  text-decoration: none !important;
+}
