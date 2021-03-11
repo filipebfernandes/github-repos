@@ -1,21 +1,19 @@
 import React, { useState, useEffect } from "react";
 import useReposQuery from "root/api/useReposQuery";
+import useForm from "../../hooks/useForm";
 
 import Button from "../Button";
 import InputText from "../InputText";
-import useForm from "../../hooks/useForm";
+import ReposTable from "../ReposTable";
 
 import styles from "./index.module.css";
 
 function ReposForm() {
-  const windowGlobal = typeof window !== "undefined" && window;
-  const unparsedStorageSearch = windowGlobal.localStorage.getItem("repoSearch");
-  const storageSearch = JSON.parse(unparsedStorageSearch) || { name: "" };
-
-  const { loading, data } = useReposQuery(storageSearch.name);
-
-  const { formValues, handleChange } = useForm(storageSearch);
+  const { formValues, handleChange } = useForm({ name: "" });
   const [repos, setRepos] = useState(null);
+  const [searchName, setSearchName] = useState("");
+
+  const { data } = useReposQuery(searchName);
 
   const isSubmitDisabled = () => {
     return !formValues || formValues.name === "";
@@ -30,9 +28,7 @@ function ReposForm() {
       return null;
     }
 
-    windowGlobal.localStorage.setItem("repoSearch", JSON.stringify(formValues));
-
-    setRepos(data);
+    setSearchName(formValues.name);
   };
 
   useEffect(() => {
@@ -46,8 +42,6 @@ function ReposForm() {
       setRepos(data);
     }
   }, [data]);
-
-  console.log(repos);
 
   const renderForm = () => {
     return (
@@ -73,7 +67,7 @@ function ReposForm() {
   return (
     <>
       {renderForm()}
-      {loading && <h1>Loading...</h1>}
+      <ReposTable repos={repos} />
     </>
   );
 }

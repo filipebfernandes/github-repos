@@ -2,8 +2,8 @@ import gql from "graphql-tag";
 import { useQuery } from "@apollo/react-hooks";
 
 const GET_REPOS_SEARCH = gql`
-  query search($name: String!) {
-    search(query: $name, type: REPOSITORY, first: 20) {
+  query search($queryString: String!) {
+    search(query: $queryString, type: REPOSITORY, first: 20) {
       edges {
         node {
           ... on Repository {
@@ -20,12 +20,12 @@ const GET_REPOS_SEARCH = gql`
 `;
 
 const useReposQuery = (name: string) => {
-  const { loading, data } = useQuery(GET_REPOS_SEARCH, {
-    variables: { name: name },
+  const { data } = useQuery(GET_REPOS_SEARCH, {
+    variables: { queryString: name },
     skip: !name || name === "",
   });
 
-  return { loading, data };
+  return { data };
 };
 
 export default useReposQuery;
